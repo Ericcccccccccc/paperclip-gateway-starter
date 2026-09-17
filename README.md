@@ -34,7 +34,7 @@ company, and no managed Connection is created.
 | `COMPANY.md` | Company name and slug (overridden by the name you type at import) |
 | `.paperclip.yaml` | CEO adapter, model, runtime and permissions |
 | `agents/ceo/AGENTS.md` | The stock Paperclip CEO persona |
-| `skills/` | The five skills the CEO is granted, plus `agentmail` |
+| _(no `skills/`)_ | Paperclip installs its bundled skills into every new company; the CEO binds to those |
 
 The CEO is configured with:
 
@@ -62,16 +62,3 @@ Exported from a working Paperclip 2026.916.0 company and sanitized: the
 originating company name was replaced, and the org-chart image was dropped
 (the GitHub import path fetches only `.md`, `skills/` and `.paperclip.yaml`).
 It contains no credentials, hostnames or filesystem paths.
-
-## Why the skills carry a pinned commit
-
-A raw Paperclip export writes `commit: null` for its bundled skills, but the
-importer refuses an external GitHub skill source without a pinned 40-character
-commit (`External skill source "…" must resolve to a pinned Git commit before
-import.`). A stock export therefore cannot be re-imported as-is — it fails
-*after* creating the company, leaving a partial import behind.
-
-Each `SKILL.md` here pins `dffc2b3ca1b9e88fa21cb17493083e682dffd1ca`, the
-Paperclip 2026.916.0 release commit these bundled skills ship with. Nothing is
-fetched from that commit at import time; it is a provenance assertion the
-importer checks.
