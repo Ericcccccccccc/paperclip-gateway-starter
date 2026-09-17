@@ -42,8 +42,13 @@ The CEO is configured with:
 adapter:
   type: "opencode_local"
   config:
+    cwd: "/paperclip"
     model: "gateway/bernie-muse-contributor"
 ```
+
+`cwd` is set deliberately. With no `cwd`, OpenCode runs in `/app` — Paperclip's
+own source tree — and this CEO runs with `dangerouslySkipPermissions: true`.
+`/paperclip` is `PAPERCLIP_HOME`, the instance data volume.
 
 `gateway` is the provider defined in the host's `opencode.json`; the model is a
 gateway alias, not a provider account. Timer heartbeats are off
