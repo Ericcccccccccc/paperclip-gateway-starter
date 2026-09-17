@@ -1,0 +1,28 @@
+schema: "paperclip/v1"
+agents:
+  ceo:
+    role: "ceo"
+    adapter:
+      config:
+        dangerouslySkipPermissions: true
+        model: "gateway/bernie-muse-contributor"
+      type: "opencode_local"
+    runtime:
+      heartbeat:
+        intervalSec: 0
+        maxConcurrentRuns: 1
+        skipTimerWhenNoActionableWork: true
+    permissions:
+      canCreateAgents: true
+      canCreateSkills: true
+    permissionGrants:
+      -
+        permissionKey: "agents:configure"
+      -
+        permissionKey: "skills:create"
+      -
+        permissionKey: "tasks:assign"
+schemaVersion: 7
+sidebar:
+  agents:
+    - "ceo"
