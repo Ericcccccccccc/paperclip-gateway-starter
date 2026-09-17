@@ -4,7 +4,6 @@ agents:
     role: "ceo"
     adapter:
       config:
-        cwd: "/paperclip"
         dangerouslySkipPermissions: true
         model: "gateway/bernie-muse-contributor"
       type: "opencode_local"

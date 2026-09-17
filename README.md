@@ -42,13 +42,14 @@ The CEO is configured with:
 adapter:
   type: "opencode_local"
   config:
-    cwd: "/paperclip"
     model: "gateway/bernie-muse-contributor"
 ```
 
-`cwd` is set deliberately. With no `cwd`, OpenCode runs in `/app` — Paperclip's
-own source tree — and this CEO runs with `dangerouslySkipPermissions: true`.
-`/paperclip` is `PAPERCLIP_HOME`, the instance data volume.
+There is deliberately no `cwd`. Paperclip strips `cwd`, `env`, instruction
+paths and skill-sync state from any package as machine-specific
+(`normalizePortableConfig`), so a package cannot carry a working directory even
+if you add one. At run time the agent uses the agent home Paperclip provisions
+for it. To pin a different directory, set it on the agent after importing.
 
 `gateway` is the provider defined in the host's `opencode.json`; the model is a
 gateway alias, not a provider account. Timer heartbeats are off
